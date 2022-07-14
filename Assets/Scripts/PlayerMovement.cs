@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
-    bool moving = false;
     bool moveLeft = false;
-    bool moveRight= false;
+    bool moveRight = false;
     bool moveUp = false;
     bool moveDown = false;
 
@@ -17,44 +17,45 @@ public class PlayerMovement : MonoBehaviour {
 
 
     // Use this for initialization
-    void Awake () {
-        rb = GetComponent<Rigidbody2D>();		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
-        if (!moving)
+    // Update is called once per frame
+    void Update()
+    {
+
+
+        if (Input.GetKey("d"))
         {
-            if (Input.GetKey("d"))
-            {
-                moveRight = true;
+            moveRight = true;
 
-            }
-            if (Input.GetKey("a"))
-            {
-                moveLeft = true;
-            }
-            if (Input.GetKey("w"))
-            {
-                moveUp = true;
-
-            }
-            if (Input.GetKey("s"))
-            {
-                moveDown = true;
-            }
         }
-		
-	}
+        if (Input.GetKey("a"))
+        {
+            moveLeft = true;
+        }
+        if (Input.GetKey("w"))
+        {
+            moveUp = true;
+
+        }
+        if (Input.GetKey("s"))
+        {
+            moveDown = true;
+        }
+
+
+    }
 
     void FixedUpdate()
     {
         if (moveRight == true)
         {
             moveRight = false;
-            if(rb.velocity.magnitude<= playerMaxSpeed)
-                rb.AddForce(new Vector2 (moveForce, 0) * Time.deltaTime);
+            if (rb.velocity.magnitude <= playerMaxSpeed)
+                rb.AddForce(new Vector2(moveForce, 0) * Time.deltaTime);
         }
         if (moveLeft == true)
         {
@@ -74,7 +75,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             moveDown = false;
             if (rb.velocity.magnitude <= playerMaxSpeed)
-                rb.AddForce(new Vector2(0,-moveForce) * Time.deltaTime);
+                rb.AddForce(new Vector2(0, -moveForce) * Time.deltaTime);
         }
 
     }
